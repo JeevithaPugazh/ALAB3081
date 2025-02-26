@@ -1,4 +1,5 @@
 // Part 1: Math Problems
+console.log("--- > PART 1 < ---");
 let n1 = 10;
 let n2 = 15;
 let n3 = 12;
@@ -79,31 +80,88 @@ let isOver25 =
 console.log(`Is any number over 25?: ${isOver25}`);
 
 // Part 2: Practical Math
+console.log("");
+console.log("--- > PART 2 < ---");
 let distance = 1500;
-let fuellBudget = 175;
-let fuelCost = 3;
+let fuelBudget = 175;
+let fuelCostPerGallon = 3;
+let speed1 = 55,
+  mpg1 = 30;
+let speed2 = 60,
+  mpg2 = 28;
+let speed3 = 75,
+  mpg3 = 23;
 
-let avgMilesPerHour = (55 + 60 + 75) / 3;
+// Calculate fuel needed
+let fuelNeeded1 = distance / mpg1,
+  fuelNeeded2 = distance / mpg2,
+  fuelNeeded3 = distance / mpg3;
 
-let avgGallonPerAvgMile = (30 + 28 + 23) / 3;
+//calculate total fuel cost
+let totalFuelCost1 = fuelNeeded1 * fuelCostPerGallon;
+let totalFuelCost2 = fuelNeeded2 * fuelCostPerGallon;
+let totalFuelCost3 = fuelNeeded3 * fuelCostPerGallon;
 
-//How many gallons of fuel will you need for the entire trip?
-let FuelNeedForEntireTrip = distance / avgGallonPerAvgMile;
+//check if the budget is enough
+let isWithinBudget1 = totalFuelCost1 <= fuelBudget;
+let isWithinBudget2 = totalFuelCost2 <= fuelBudget;
+let isWithinBudget3 = totalFuelCost3 <= fuelBudget;
+
+// calculate trip duration
+let tripDuration1 = distance / speed1;
+let tripDuration2 = distance / speed2;
+let tripDuration3 = distance / speed2;
+
+//Find the best option
+let bestSpeed =
+  isWithinBudget3 * speed3 +
+  !isWithinBudget3 * isWithinBudget2 * speed2 +
+  !isWithinBudget3 * !isWithinBudget2 * speed1;
+
+console.log("--- If a person travelling in 55mph ---");
 console.log(
-  `Total fuel needed: ${FuelNeedForEntireTrip.toFixed(2)}`
+  `Total fuel needed:${fuelNeeded1.toFixed(2)} gallons`
+);
+console.log(
+  `Total fuel cost:$${totalFuelCost1.toFixed(2)}`
+);
+console.log(
+  `Is the budget enough to cover the fuel expenses?: ${isWithinBudget1}`
+);
+console.log(
+  `Total trip duration: ${tripDuration1.toFixed(2)} hours`
 );
 
-let costOfFuel = FuelNeedForEntireTrip * fuelCost;
-console.log(`Total fuel cost: ${costOfFuel.toFixed(2)}$`);
-
-// Will your budget be enough to cover the fuel expense?
-let isBudgetCoverFuel = fuellBudget > costOfFuel;
+console.log("");
+console.log("--- If a person travelling in 60mph ---");
 console.log(
-  `Is budget enough to cover the fuel expense?: ${isBudgetCoverFuel}`
+  `Total fuel needed:${fuelNeeded2.toFixed(2)} gallons`
+);
+console.log(
+  `Total fuel cost:$${totalFuelCost2.toFixed(2)}`
+);
+console.log(
+  `Is the budget enough to cover the fuel expenses?: ${isWithinBudget2}`
+);
+console.log(
+  `Total trip duration: ${tripDuration2.toFixed(2)} hours`
 );
 
-// How long will the trip take, in hours?
-let travelTime = distance / avgMilesPerHour;
+console.log("");
+console.log("--- If a person travelling in 75mph ---");
 console.log(
-  `Total travel Time is: ${travelTime.toFixed(2)} hours`
+  `Total fuel needed:${fuelNeeded3.toFixed(2)} gallons`
 );
+console.log(
+  `Total fuel cost:$${totalFuelCost3.toFixed(2)}`
+);
+console.log(
+  `Is the budget enough to cover the fuel expenses?: ${isWithinBudget3}`
+);
+console.log(
+  `Total trip duration: ${tripDuration3.toFixed(2)} hours`
+);
+console.log("");
+console.log(`The best speed for this trip is : ${bestSpeed}`);
+
+console.log("--- PART 3 ---")
